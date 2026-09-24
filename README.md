@@ -26,8 +26,9 @@ Windows side, named by `$env:HERCULES` or on the path.
 with the machine of `run/lfs.cnf` boots the kernel from them at once
 (`.\run\hercules.ps1 -NoBuild -Name lfs -Machine lfs`). The 3390 volume
 with the system on it, `lfs.ckd` (2.8 GB, 3390-3, with zipl's IPL records
-on it), is too large for git: it is published compressed as a release
-asset of this repository; put it into `build/` uncompressed, and
+on it), is too large for git: it is published compressed as an asset of
+the release [system-2026-09-24](https://github.com/mms-it-ch/lfs-s390x/releases/tag/system-2026-09-24)
+of this repository; put it into `build/` uncompressed, and
 `.\run\hercules.ps1 -NoBuild -Name lfs-dasd -Machine lfs` loads the system
 from the disk itself, `ipl 120`. The login is `root`, the password `lfs`.
 
