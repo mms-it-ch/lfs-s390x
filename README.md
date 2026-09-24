@@ -18,9 +18,18 @@ it `configure`.
 it (`tools/host-packages.sh` installs what the build needs there,
 `qemu-user-static` among it) and a Hercules
 ([SDL Hyperion](https://github.com/SDL-Hercules-390/hyperion)) on the
-Windows side, named by `$env:HERCULES` or on the path. What the build
-produces - the 3390 volume and the `.ins` files in `build/`, a few gigabytes -
-is not in the repository.
+Windows side, named by `$env:HERCULES` or on the path.
+
+**The ready-made system** is in `build/`, as far as GitHub takes it:
+`lfs.ins` with the kernel and the command line it names (`lfs.kernel`,
+`lfs.prm`) and the kernel's `lfs.map` are in the repository, so a Hercules
+with the machine of `run/lfs.cnf` boots the kernel from them at once
+(`.\run\hercules.ps1 -NoBuild -Name lfs -Machine lfs`). The 3390 volume
+with the system on it, `lfs.ckd` (2.8 GB, 3390-3, with zipl's IPL records
+on it), is too large for git: it is published compressed as a release
+asset of this repository; put it into `build/` uncompressed, and
+`.\run\hercules.ps1 -NoBuild -Name lfs-dasd -Machine lfs` loads the system
+from the disk itself, `ipl 120`. The login is `root`, the password `lfs`.
 
 License: MIT (see `LICENSE`). The build commands follow the LFS book, whose
 commands are MIT as well.

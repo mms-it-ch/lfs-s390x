@@ -1,2 +1,7 @@
 scratch/
-build/
+build/*
+# The ready-made system, as far as GitHub takes it: the .ins and what it names
+!build/lfs.ins
+!build/lfs.kernel
+!build/lfs.prm
+!build/lfs.map
