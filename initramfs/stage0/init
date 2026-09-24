@@ -1,0 +1,16 @@
+#!/bin/sh
+# Stage 0: prove that a Linux kernel runs a program on this machine.
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t devtmpfs devtmpfs /dev
+echo
+echo "=== lfs-s390x stage 0: user space is running ==="
+uname -a
+grep -E "vendor|machine|features|bogomips" /proc/cpuinfo
+grep -E "MemTotal|MemFree" /proc/meminfo
+echo "uptime: $(cat /proc/uptime)"
+ls /sys/bus/ccw/devices 2>/dev/null
+echo "=== stage 0 done ==="
+# The console the kernel calls ttyS0 is /dev/sclp_line0 on s390, which is
+# more than cttyhack knows
+exec setsid sh -c "exec sh </dev/sclp_line0 >/dev/sclp_line0 2>&1"

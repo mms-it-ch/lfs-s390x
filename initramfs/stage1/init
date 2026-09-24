@@ -1,0 +1,13 @@
+#!/bin/sh
+# Stage 1: the same busybox, but this time it was read from a 3390.
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+echo
+echo "=== lfs-s390x stage 1: the root file system is a DASD ==="
+grep -E " / |dasd" /proc/mounts
+cat /proc/dasd/devices
+mount -o remount,rw / && echo "written at $(cat /proc/uptime)" >> /written.txt && sync
+cat /written.txt
+mount -o remount,ro /
+echo "=== stage 1 done ==="
+exec setsid sh -c "exec sh </dev/sclp_line0 >/dev/sclp_line0 2>&1"

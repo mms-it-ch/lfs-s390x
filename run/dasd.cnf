@@ -1,0 +1,16 @@
+#
+# The machine of linux.cnf with one 3390 on it: the volume tools/mkdasd.py
+# wrote.
+#
+
+ARCHLVL     z/Arch
+MAINSIZE    512
+NUMCPU      1
+MAXCPU      1
+CPUSERIAL   000611
+CPUMODEL    8562
+LPARNAME    LFS
+LOADPARM    ........
+PANRATE     FAST
+
+0120 3390 ../build/stage1.ckd

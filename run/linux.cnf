@@ -1,0 +1,14 @@
+#
+# The machine for stage 0: one z/Architecture processor, 512 MB, no devices -
+# the console is the service processor.
+#
+
+ARCHLVL     z/Arch
+MAINSIZE    512
+NUMCPU      1
+MAXCPU      1
+CPUSERIAL   000611
+CPUMODEL    8562
+LPARNAME    LFS
+LOADPARM    ........
+PANRATE     FAST

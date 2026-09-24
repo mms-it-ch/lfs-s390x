@@ -1,0 +1,5 @@
+# Hercules: load, let it boot, show where it is, leave
+ipl ../build/stage1.ins
+pause 60
+psw
+quit

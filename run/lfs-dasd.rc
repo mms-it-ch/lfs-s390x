@@ -1,0 +1,6 @@
+# Hercules: IPL from the 3390 itself - the records zipl wrote - let systemd
+# come up, show where it is, leave
+ipl 120
+pause 240
+psw
+quit

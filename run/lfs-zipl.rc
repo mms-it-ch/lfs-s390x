@@ -1,0 +1,18 @@
+# Hercules: boot the LFS system from the .ins, log in at the service processor's
+# console (a line beginning with . is handed to the guest as SCLP input), run
+# zipl - which writes the IPL records and /boot/bootmap onto the volume - and
+# power off. After this the volume is loadable by itself: lfs-dasd.rc.
+# The login waits 280 s: the kernel of 10.3, 31 MB with modules, reaches the
+# prompt at about 220 s on Hercules (24.09.2026), the tiny one did at 180.
+ipl ../build/lfs.ins
+pause 280
+.root
+pause 20
+.lfs
+pause 30
+.zipl -V; echo ZIPL-RC=$?
+pause 60
+.sync; systemctl poweroff
+pause 60
+psw
+quit

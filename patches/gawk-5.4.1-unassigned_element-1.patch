@@ -1,0 +1,22 @@
+diff -Naur gawk-5.4.1.orig/awk.h gawk-5.4.1/awk.h
+--- gawk-5.4.1.orig/awk.h	2026-07-09 18:47:00.000000000 +0200
++++ gawk-5.4.1/awk.h	2026-09-20 15:19:17.667912202 +0200
+@@ -2043,6 +2043,7 @@
+ 	if (s->type == Node_elem_new) {
+ 		elem_new_reset(s);
+ 		s->type = Node_val;
++		s->stfmt = STFMT_UNUSED;	// see elem_new_to_scalar()
+ 
+ 		return s;
+ 	}
+diff -Naur gawk-5.4.1.orig/eval.c gawk-5.4.1/eval.c
+--- gawk-5.4.1.orig/eval.c	2026-07-09 18:47:00.000000000 +0200
++++ gawk-5.4.1/eval.c	2026-09-20 15:19:17.663905900 +0200
+@@ -1952,6 +1952,7 @@
+ 	elem_new_reset(n);
+ 
+ 	n->type = Node_val;
++	n->stfmt = STFMT_UNUSED;	// vname, which elem_new_reset() has just cleared, is the same storage
+ 
+ 	if (n->valref > 1) {
+ 		unref(n);
